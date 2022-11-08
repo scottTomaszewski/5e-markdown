@@ -34,9 +34,9 @@ jobs:
         mkdir 5etools
         unzip -q 5etools.zip -d 5etools || echo "unzip finished with errors. yolo."
         
-        # Build list of books + adventures, setup execution
-        BOOKS=$(find "5etools/data/book" | tail -n +2)
-        ADVENTURES=$(find "5etools/data/adventure" | tail -n +2)
+        # Build list of books + adventures (space-separated), setup execution
+        BOOKS=$(echo $(find "5etools/data/book" | tail -n +2))
+        ADVENTURES=$(echo $(find "5etools/data/adventure" | tail -n +2))
 
         echo "BOOKS=$BOOKS" >> $GITHUB_ENV
         echo "ADVENTURES=$ADVENTURES" >> $GITHUB_ENV
