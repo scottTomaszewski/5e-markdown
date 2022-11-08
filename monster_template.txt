@@ -1,0 +1,36 @@
+---
+cssclass: json5e-monster
+{#if resource.tags }
+tags:
+{#for tag in resource.tags}
+- {tag}
+{/for}
+{/if}
+aliases: ["{resource.name}"]
+statblock: true
+{resource.5eStatblockYaml}
+name: {resource.name}
+image: "[[{resource.name}.png]]"
+---
+
+# {resource.name}
+
+```statblock
+{resource.5eStatblockYaml}
+"image": "[[{resource.name}.png]]"
+```
+^statblock
+
+*Source: {resource.source}*
+{#if resource.description }
+
+## Description
+
+{resource.description}
+{/if}
+{#if resource.environment }
+
+## Environment
+
+{resource.environment}
+{/if}
