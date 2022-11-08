@@ -30,7 +30,7 @@ jobs:
     - name: "pull 5etools"
       run: |
         sudo apt-get update; sudo apt-get -y install curl unzip zip
-        curl -L https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/5etools-${VERSION_5ETOOLS}.zip -o 5etools.zip
+        curl -L https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/v1.169.0/5etools-v1.169.0.zip -o 5etools.zip
         mkdir 5etools
         unzip -q 5etools.zip -d 5etools || echo "unzip finished with errors. yolo."
     - name: jbang
@@ -44,3 +44,4 @@ jobs:
         GITHUB_TOKEN: $
         SOURCES: "PHB,DMG,MM,LMoP"
         JSON5E_CONVERT_CLI_VERSION: "1.0.16"
+        VERSION_5ETOOLS: "v1.169.0"
