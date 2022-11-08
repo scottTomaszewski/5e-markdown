@@ -27,6 +27,12 @@ jobs:
         key: $-jbang-$
         restore-keys: |
             $-jbang-
+    - name: "pull 5etools"
+      run: |
+        apt-get update; apt-get -y install curl unzip zip
+        curl -L https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/5etools-${VERSION_5ETOOLS}.zip -o 5etools.zip
+        mkdir 5etools
+        unzip -q 5etools.zip -d 5etools || echo "unzip finished with errors. yolo."
     - name: jbang
       uses: jbangdev/jbang-action@v0.99.1
       with:
