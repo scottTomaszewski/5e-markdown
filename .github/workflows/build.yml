@@ -45,7 +45,7 @@ jobs:
       with:
         trust: https://jitpack.io/dev/ebullient/json5e-convert-cli
         script: https://jitpack.io/dev/ebullient/json5e-convert-cli/1.0.16/json5e-convert-cli-1.0.16-runner.jar
-        scriptargs: "-o collapsed_no_images -s $SOURCES 5etools/data ${{ env.BOOKS }} ${{ env.ADVENTURES }}"
+        scriptargs: "-o collapsed_no_images -s ${{ env.SOURCES }} 5etools/data ${{ env.BOOKS }} ${{ env.ADVENTURES }}"
       env:
         JBANG_REPO: /root/.jbang/repository
         GITHUB_TOKEN: $
