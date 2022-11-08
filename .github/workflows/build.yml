@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  jbang:
+    runs-on: ubuntu-latest
+    name: convert
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - uses: actions/cache@v1
+      with:
+        path: /root/.jbang
+        key: $-jbang-$
+        restore-keys: |
+            $-jbang-
+    - name: jbang
+      uses: jbangdev/jbang-action@v0.99.1
+      with:
+        script: https://jitpack.io/dev/ebullient/json5e-convert-cli/${JSON5E_CONVERT_CLI_VERSION}/json5e-convert-cli-${JSON5E_CONVERT_CLI_VERSION}-runner.jar
+        scriptargs: "-o collapsed_no_images -s $SOURCES 5etools/data"
+      env:
+        JBANG_REPO: /root/.jbang/repository
+        GITHUB_TOKEN: $
+        SOURCES: "PHB,DMG,MM,LMoP"
+        JSON5E_CONVERT_CLI_VERSION: "1.0.16"
