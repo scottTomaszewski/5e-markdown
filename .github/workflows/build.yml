@@ -30,7 +30,7 @@ jobs:
     - name: jbang
       uses: jbangdev/jbang-action@v0.99.1
       with:
-        script: https://jitpack.io/dev/ebullient/json5e-convert-cli/${JSON5E_CONVERT_CLI_VERSION}/json5e-convert-cli-${JSON5E_CONVERT_CLI_VERSION}-runner.jar
+        script: https://jitpack.io/dev/ebullient/json5e-convert-cli/1.0.16/json5e-convert-cli-1.0.16-runner.jar
         scriptargs: "-o collapsed_no_images -s $SOURCES 5etools/data"
       env:
         JBANG_REPO: /root/.jbang/repository
