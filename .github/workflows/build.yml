@@ -12,7 +12,9 @@ on:
 env:
   VERSION_5ETOOLS: "v1.169.1"
   JSON5E_CONVERT_CLI_VERSION: "1.0.16"
-  SOURCES: "PHB,DMG,MM,LMoP"
+  #SOURCES: "PHB,DMG,MM,LMoP"
+  SOURCES: "AAG,AI,AitFR-AVT,AitFR-DN,AitFR-FCD,AitFR-ISF,AitFR-THP,AitFR,AL,ALCoS,ALEE,ALRoD,AWM,AZfyT,BAM,BGDIA,CM,CoS,CRCotN,DC,DIP,DMG,DoD,DoSI,EEPC,EET,EFR,DD,FS,ToR,US,EGW_DD,EGW_FS,EGW_ToR,EGW_US,EGW,ERLW,ESK,FTD,GGR,GoS,HEROES_FEAST,HftT,HoL,HotDQ,IDRotF,IMR,JttRC,KKW,LLK,LMoP,LoX,LR,MaBJoV,MCV1SC,MFF,MGELFT,MM,MOT,MPMM,MTF,NRH-ASS,NRH-AT,NRH-AVitW,NRH-AWoL,NRH-CoI,NRH-TCMC,NRH-TLT,NRH,OGA,OotA,OoW,PHB,PotA,PSA,PSD,PSI,PSK,PSX,PSZ,RMBRE,RMR,RoT,RoTOS,RtG,SAC,SADS,SAiS,SCAG,SCC-ARiR,SCC-CK,SCC-HfMT,SCC-TMM,SCC_ARiR,SCC_CK,SCC_HfMT,SCC_TMM,SCC,SCREEN_DUNGEON_KIT,SCREEN_WILDERNESS_KIT,SCREEN,SDW,SjA,SJA,SKT,SLW,TCE,TLK,ToA,ToD,TTP,TftYP,TftYP-AtG,TftYP-DiT,TftYP-TFoF,TftYP-THSoT,TftYP-ToH,TftYP-TSC,TftYP-WPM,TYP,TYP_AtG,TYP_DiT,TYP_TFoF,TYP_THSoT,TYP_ToH,TYP_TSC,TYP_WPM,VD,VGM,VRGR,WBtW,WDH,WDMM,XGE,XMtS,ALCurseOfStrahd,ALElementalEvil,ALRageOfDemons,ScreenDungeonKit,ScreenWildernessKit,Screen"
+
 jobs:
   jbang:
     runs-on: ubuntu-latest
@@ -54,3 +56,35 @@ jobs:
       with:
         name: collapsed_sources_no_images
         path: collapsed_sources_no_images.zip
+   - name: "pull images"
+     run: |
+       curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/img-${VERSION_5ETOOLS}.z01" -o img-${VERSION_5ETOOLS}.z01
+       curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/img-${VERSION_5ETOOLS}.z02" -o img-${VERSION_5ETOOLS}.z02
+       curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/img-${VERSION_5ETOOLS}.z03" -o img-${VERSION_5ETOOLS}.z03
+       curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/img-${VERSION_5ETOOLS}.z04" -o img-${VERSION_5ETOOLS}.z04
+       curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/img-${VERSION_5ETOOLS}.z05" -o img-${VERSION_5ETOOLS}.z05
+       curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/img-${VERSION_5ETOOLS}.z06" -o img-${VERSION_5ETOOLS}.z06
+       curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/img-${VERSION_5ETOOLS}.z07" -o img-${VERSION_5ETOOLS}.z07
+       curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/img-${VERSION_5ETOOLS}.z08" -o img-${VERSION_5ETOOLS}.z08
+       curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/img-${VERSION_5ETOOLS}.z09" -o img-${VERSION_5ETOOLS}.z09
+       curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/img-${VERSION_5ETOOLS}.zip" -o img-${VERSION_5ETOOLS}.zip
+       zip -q -s- img-${VERSION_5ETOOLS}.zip -O img-combined.zip
+       unzip -q img-combined.zip -d 5etools
+       rm -f img-${VERSION_5ETOOLS}.z*
+       rm -f img-combined.zip
+   - name: jbang
+      uses: jbangdev/jbang-action@v0.99.1
+      with:
+        trust: https://jitpack.io/dev/ebullient/json5e-convert-cli
+        script: https://jitpack.io/dev/ebullient/json5e-convert-cli/${{ env.JSON5E_CONVERT_CLI_VERSION }}/json5e-convert-cli-${{ env.JSON5E_CONVERT_CLI_VERSION }}-runner.jar
+        scriptargs: "-o collapsed_with_images -s ${{ env.SOURCES }} 5etools/data 5etools/img ${{ env.BOOKS }} ${{ env.ADVENTURES }}"
+      env:
+        JBANG_REPO: /root/.jbang/repository
+        GITHUB_TOKEN: $
+    - name: compress
+        run: zip -q -r collapsed_sources_with_tokens.zip collapsed_with_images
+    - uses: actions/upload-artifact@v3
+      with:
+        name: collapsed_sources_with_tokens
+        path: collapsed_sources_with_tokens.zip
+
