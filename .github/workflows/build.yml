@@ -77,7 +77,7 @@ jobs:
       with:
         trust: https://jitpack.io/dev/ebullient/json5e-convert-cli
         script: https://jitpack.io/dev/ebullient/json5e-convert-cli/${{ env.JSON5E_CONVERT_CLI_VERSION }}/json5e-convert-cli-${{ env.JSON5E_CONVERT_CLI_VERSION }}-runner.jar
-        scriptargs: "-o collapsed_with_images -s ${{ env.SOURCES }} 5etools/data 5etools/img ${{ env.BOOKS }} ${{ env.ADVENTURES }}"
+        scriptargs: "-o collapsed_with_images --monster monster_template.txt --spell spell_template.txt -s ${{ env.SOURCES }} 5etools/data 5etools/img ${{ env.BOOKS }} ${{ env.ADVENTURES }}"
       env:
         JBANG_REPO: /root/.jbang/repository
         GITHUB_TOKEN: $
@@ -97,7 +97,7 @@ jobs:
         tag_name: "${{ env.VERSION_5ETOOLS }}-${{ env.JSON5E_CONVERT_CLI_VERSION }}-${{ github.sha }}"
       env:
         GITHUB_TOKEN: ${{ github.token }}
-    - name: upload linux artifact
+    - name: upload image artifact
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -105,4 +105,13 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: collapsed_sources_with_tokens.zip
         asset_name: collapsed_sources_with_tokens.zip
+        asset_content_type: application/zip
+    - name: upload non-image artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: collapsed_sources_no_images.zip
+        asset_name: collapsed_sources_no_images.zip
         asset_content_type: application/zip
