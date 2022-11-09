@@ -19,8 +19,7 @@ env:
   # comma-separated list of sources (books, adventures, ...) - leave empty for SRD only
   # For list, see https://github.com/ebullient/json5e-convert-cli/blob/main/src/main/java/dev/ebullient/json5e/tools5e/CompendiumSources.java
   SOURCES: ""
-  
-  #SOURCES: "AAG,AI,AitFR-AVT,AitFR-DN,AitFR-FCD,AitFR-ISF,AitFR-THP,AitFR,AL,ALCoS,ALEE,ALRoD,AWM,AZfyT,BAM,BGDIA,CM,CoS,CRCotN,DC,DIP,DMG,DoD,DoSI,EEPC,EET,EFR,DD,FS,ToR,US,EGW_DD,EGW_FS,EGW_ToR,EGW_US,EGW,ERLW,ESK,FTD,GGR,GoS,HEROES_FEAST,HftT,HoL,HotDQ,IDRotF,IMR,JttRC,KKW,LLK,LMoP,LoX,LR,MaBJoV,MCV1SC,MFF,MGELFT,MM,MOT,MPMM,MTF,NRH-ASS,NRH-AT,NRH-AVitW,NRH-AWoL,NRH-CoI,NRH-TCMC,NRH-TLT,NRH,OGA,OotA,OoW,PHB,PotA,PSA,PSD,PSI,PSK,PSX,PSZ,RMBRE,RMR,RoT,RoTOS,RtG,SAC,SADS,SAiS,SCAG,SCC-ARiR,SCC-CK,SCC-HfMT,SCC-TMM,SCC_ARiR,SCC_CK,SCC_HfMT,SCC_TMM,SCC,SCREEN_DUNGEON_KIT,SCREEN_WILDERNESS_KIT,SCREEN,SDW,SjA,SJA,SKT,SLW,TCE,TLK,ToA,ToD,TTP,TftYP,TftYP-AtG,TftYP-DiT,TftYP-TFoF,TftYP-THSoT,TftYP-ToH,TftYP-TSC,TftYP-WPM,TYP,TYP_AtG,TYP_DiT,TYP_TFoF,TYP_THSoT,TYP_ToH,TYP_TSC,TYP_WPM,VD,VGM,VRGR,WBtW,WDH,WDMM,XGE,XMtS,ALCurseOfStrahd,ALElementalEvil,ALRageOfDemons,ScreenDungeonKit,ScreenWildernessKit,Screen"
+
 jobs:
   jbang:
     runs-on: ubuntu-latest
@@ -69,13 +68,7 @@ jobs:
     # Zip up the markdown
     - name: compress
       run: zip -q -r collapsed_sources_no_images.zip collapsed_no_images
-    
-    # Persist the markdown zip as an artifact
-#     - uses: actions/upload-artifact@v3
-#       with:
-#         name: collapsed_sources_no_images
-#         path: collapsed_sources_no_images.zip
-    
+       
     # Download the 5etools image data and extract the data
     - name: "pull images"
       if: ${{ env.SOURCES != '' }}
@@ -111,14 +104,7 @@ jobs:
     - name: compress
       if: ${{ env.SOURCES != '' }}
       run: zip -q -r collapsed_sources_with_tokens.zip collapsed_with_images
-    
-    # Persist the markdown + image zip as an artifact
-#     - uses: actions/upload-artifact@v3
-#       if: ${{ env.SOURCES != '' }}
-#       with:
-#         name: collapsed_sources_with_tokens
-#         path: collapsed_sources_with_tokens.zip
-    
+        
     # Create a Github release
     - name: release
       uses: actions/create-release@v1
