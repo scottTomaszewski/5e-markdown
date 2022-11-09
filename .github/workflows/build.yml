@@ -87,4 +87,22 @@ jobs:
       with:
         name: collapsed_sources_with_tokens
         path: collapsed_sources_with_tokens.zip
-
+    - name: release
+      uses: actions/create-release@v1
+      id: create_release
+      with:
+        draft: false
+        prerelease: false
+        release_name: "${{ env.VERSION_5ETOOLS }}-${{ env.JSON5E_CONVERT_CLI_VERSION }}-${{ github.sha }}"
+        tag_name: "${{ env.VERSION_5ETOOLS }}-${{ env.JSON5E_CONVERT_CLI_VERSION }}-${{ github.sha }}"
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+    - name: upload linux artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: collapsed_sources_with_tokens.zip
+        asset_name: collapsed_sources_with_tokens.zip
+        asset_content_type: application/zip
