@@ -12,7 +12,7 @@ On each release, there are two possible zip artifacts:
 
 ## Usage
 
-As is, Github Actions for this repo will only generate markdown for the SRD.  To generate markdown for content you own, start by making a (private) github repo using this repo as a template (See [Github Docs - Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template))
+As is, Github Actions for this repo will only generate markdown for the SRD.  To generate markdown for content you own, start by making a (private) github repo using this repo as a template (See [Github Docs - Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)).  As far as I know, you cant create private repos by forking, so use the template approach with a private repo.
 
 ![image](https://user-images.githubusercontent.com/5295276/200853381-ba0f4da4-3117-40bc-924b-8c824056baa1.png)
 
