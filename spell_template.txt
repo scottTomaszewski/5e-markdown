@@ -8,8 +8,14 @@ tags:
 {/for}
 {/if}
 type: spell
-spell_school: {resource.school}
+spell_name: {resource.name}
 spell_level: {resource.level}
+spell_school: {resource.school}
+spell_cast_time: {resource.time}
+spell_is_ritual: {resource.ritual}
+spell_range: {resource.range}
+spell_components: {resource.components}
+spell_duration: {resource.duration}
 aliases: ["{resource.name}"]
 ---
 # {resource.name}
