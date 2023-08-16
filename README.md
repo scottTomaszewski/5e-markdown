@@ -1,6 +1,6 @@
 # 5e Markdown
 
-This repo helps in producing obsidian (markdown) versions of 5e data.  You can find markdown for the SRD on the
+This repo helps in producing markdown versions of 5e data.  You can find markdown for the SRD on the
 [Releases Page](https://github.com/scottTomaszewski/5e-markdown/releases).
 
 #### Zips Available
@@ -8,20 +8,20 @@ This repo helps in producing obsidian (markdown) versions of 5e data.  You can f
 On each release, there are two possible zip artifacts:
 
 - `collapsed_sources_no_images.zip` - Just markdown, no images.  Less than 25Mb compressed 
-- `collapsed_sources_with_tokens.zip` - Markdown and monster tokens, only generates when `SOURCES` are added.  Over 600Mb with all sources
+- `collapsed_sources_with_tokens.zip` - Markdown and monster tokens, only generates when SOURCES are added.  Over 600Mb with all sources
 
 ## Usage
 
-As is, Github Actions for this repo will only generate markdown for the SRD.  To generate markdown for content you own, start by making a (private) github repo using this repo as a template (See [Github Docs - Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)).  As far as I know, you cant create private repos by forking, so use the template approach with a private repo.
+As is, Github Actions for this repo will only generate markdown for the SRD.  To generate markdown for content you own, start by making a (private) github repo using this repo as a template (See [Github Docs - Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template))
 
 ![image](https://user-images.githubusercontent.com/5295276/200853381-ba0f4da4-3117-40bc-924b-8c824056baa1.png)
 
 In your newly generated repo, 
 
-1. Update the `.github/workflows/build.yml` file with the sources you want
-    1. In the yaml, the `env.SOURCES` field should be populated with a comma-separated list of books. For example, to generate markdown for the Player's Handbook, Monster Manual, and Dungeon Master Guide, you can set `SOURCES: "PHB,MM,DMG"`
+1. Update the `config.json` file with the sources you want.  For information on how to use this file, see the json5e-convert-cli [json documentation](https://github.com/ebullient/json5e-convert-cli#additional-parameters)
+    1. There are two additional fields here: `json5e_convert_cli_version` for the version of json5e-convert-cli and `version_5etools` for the version of 5etools
 2. Commit and push the change
-3. Wait for the cli converter to do its thing (could take a few minutes, check progress in the `Actions` tab)
+3. Wait up to 20 minutes for the cli converter to do its thing
 4. When finished, go to your repo's Releases Page and download the markdown
 
 **Backup your vault or use a test vault before using this data!**

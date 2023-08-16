@@ -1,0 +1,15 @@
+{
+  "from": [
+    "DMG",
+    "MM",
+    "PHB"    
+  ],
+  "paths": {
+    "compendium": "/5e_compendium/",
+    "rules": "/5e_compendium/rules/"
+  },
+  "template": {
+    "spell": "spell_template.txt",
+    "monster": "monster_template.txt"
+  }
+}

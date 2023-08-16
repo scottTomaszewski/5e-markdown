@@ -7,6 +7,7 @@ tags:
 - {tag}
 {/for}
 {/if}
+aliases: ["{resource.name}"]
 type: spell
 spell_name: {resource.name}
 spell_level: {resource.level}
@@ -16,7 +17,6 @@ spell_is_ritual: {resource.ritual}
 spell_range: {resource.range}
 spell_components: {resource.components}
 spell_duration: {resource.duration}
-aliases: ["{resource.name}"]
 ---
 # {resource.name}
 *{resource.level}, {resource.school}{#if resource.ritual} (ritual){/if}*  
@@ -28,6 +28,10 @@ aliases: ["{resource.name}"]
 
 {resource.text}
 
+{#if resource.hasSections }
+## Summary
+
+{/if}
 **Classes**: {resource.classes}
 
 Source: {resource.source}
