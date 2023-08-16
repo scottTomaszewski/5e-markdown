@@ -19,10 +19,12 @@ As is, Github Actions for this repo will only generate markdown for the SRD.  To
 In your newly generated repo, 
 
 1. Update the `config.json` file with the sources you want.  For information on how to use this file, see the json5e-convert-cli [json documentation](https://github.com/ebullient/json5e-convert-cli#additional-parameters)
-    1. There are two additional fields here: `json5e_convert_cli_version` for the version of json5e-convert-cli and `version_5etools` for the version of 5etools
-2. Commit and push the change
-3. Wait up to 20 minutes for the cli converter to do its thing
-4. When finished, go to your repo's Releases Page and download the markdown
+2. There is also a `versions.json` file with two additional fields: `json5e_convert_cli_version` for the version of json5e-convert-cli and `version_5etools` for the version of 5etools
+3. Commit and push the change
+4. Wait up to 20 minutes for the cli converter to do its thing
+5. When finished, go to your repo's Releases Page and download the markdown
+
+Note: Generating with images may be very large depending on which sources you pull in and github may not allow you to persist the artifact.
 
 **Backup your vault or use a test vault before using this data!**
 
