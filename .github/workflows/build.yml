@@ -61,18 +61,6 @@ jobs:
     # Run convert cli without images
     - name: convert-cli
       run: ttrpg-convert-cli-2.1.0-linux-x86_64/bin/ttrpg-convert -g 5e -o collapsed_no_images config.json 5etools/data ${{ env.BOOKS }} ${{ env.ADVENTURES }}
-        
-#     # Run the json5e-convert-cli tool (without images)
-#     - name: jbang
-#       uses: jbangdev/jbang-action@v0.99.1
-#       with:
-#         trust: https://jitpack.io/dev/ebullient/json5e-convert-cli
-#         script: https://jitpack.io/dev/ebullient/json5e-convert-cli/${{ env.JSON5E_CONVERT_CLI_VERSION }}/json5e-convert-cli-${{ env.JSON5E_CONVERT_CLI_VERSION }}-runner.jar
-# #         scriptargs: "-o collapsed_no_images --monster monster_template.txt --spell spell_template.txt config.json 5etools/data ${{ env.BOOKS }} ${{ env.ADVENTURES }}"
-#         scriptargs: "-g 5e -o collapsed_no_images config.json 5etools/data ${{ env.BOOKS }} ${{ env.ADVENTURES }}"
-#       env:
-#         JBANG_REPO: /root/.jbang/repository
-#         GITHUB_TOKEN: $
     
     # Zip up the markdown
     - name: compress
@@ -91,6 +79,7 @@ jobs:
         curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${{ env.VERSION_5ETOOLS }}/img-${{ env.VERSION_5ETOOLS }}.z07" -o img-${{ env.VERSION_5ETOOLS }}.z07
         curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${{ env.VERSION_5ETOOLS }}/img-${{ env.VERSION_5ETOOLS }}.z08" -o img-${{ env.VERSION_5ETOOLS }}.z08
         curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${{ env.VERSION_5ETOOLS }}/img-${{ env.VERSION_5ETOOLS }}.z09" -o img-${{ env.VERSION_5ETOOLS }}.z09
+        curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${{ env.VERSION_5ETOOLS }}/img-${{ env.VERSION_5ETOOLS }}.z10" -o img-${{ env.VERSION_5ETOOLS }}.z10
         curl -L "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${{ env.VERSION_5ETOOLS }}/img-${{ env.VERSION_5ETOOLS }}.zip" -o img-${{ env.VERSION_5ETOOLS }}.zip
         zip -q -s- img-${{ env.VERSION_5ETOOLS }}.zip -O img-combined.zip
         unzip -q img-combined.zip -d 5etools
@@ -100,20 +89,6 @@ jobs:
     # Run convert cli with images
     - name: convert-cli
       run: ttrpg-convert-cli-2.1.0-linux-x86_64/bin/ttrpg-convert -g 5e -o collapsed_with_images config.json 5etools/data 5etools/img ${{ env.BOOKS }} ${{ env.ADVENTURES }}
-
-    
-#     # Run the json5e-convert-cli tool (with images)
-#     - name: jbang
-#       if: ${{ env.SOURCES != '' }}
-#       uses: jbangdev/jbang-action@v0.99.1
-#       with:
-#         trust: https://jitpack.io/dev/ebullient/json5e-convert-cli
-#         script: https://jitpack.io/dev/ebullient/json5e-convert-cli/${{ env.JSON5E_CONVERT_CLI_VERSION }}/json5e-convert-cli-${{ env.JSON5E_CONVERT_CLI_VERSION }}-runner.jar
-# #         scriptargs: "-o collapsed_with_images --monster monster_template.txt --spell spell_template.txt config.json 5etools/data 5etools/img ${{ env.BOOKS }} ${{ env.ADVENTURES }}"
-#         scriptargs: "-g 5e -o collapsed_with_images config.json 5etools/data 5etools/img ${{ env.BOOKS }} ${{ env.ADVENTURES }}"
-#       env:
-#         JBANG_REPO: /root/.jbang/repository
-#         GITHUB_TOKEN: $
     
     # Zip up the markdown and images
     - name: compress
