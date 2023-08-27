@@ -43,8 +43,8 @@ jobs:
         curl -L https://github.com/ebullient/ttrpg-convert-cli/releases/download/${JSON5E_CONVERT_CLI_VERSION}/ttrpg-convert-cli-${JSON5E_CONVERT_CLI_VERSION}-linux-x86_64.tgz -o ttrpg-convert-cli.tgz
         tar -zxvf ttrpg-convert-cli.tgz
         mv ttrpg-convert-cli-${JSON5E_CONVERT_CLI_VERSION}-linux-x86_64/bin/ttrpg-convert ./ttrpg-convert
-        ttrpg-convert --help
-        # binary at ttrpg-convert
+        ./ttrpg-convert --help
+        # binary at ./ttrpg-convert
 
         # Download 5etools data (without images)
         echo "https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/releases/download/${VERSION_5ETOOLS}/5etools-${VERSION_5ETOOLS}.zip"
@@ -61,7 +61,7 @@ jobs:
 
     # Run convert cli without images
     - name: convert-cli
-      run: ttrpg-convert -g 5e -o collapsed_no_images config.json 5etools/data ${{ env.BOOKS }} ${{ env.ADVENTURES }}
+      run: ./ttrpg-convert -g 5e -o collapsed_no_images config.json 5etools/data ${{ env.BOOKS }} ${{ env.ADVENTURES }}
     
     # Zip up the markdown
     - name: compress
@@ -89,7 +89,7 @@ jobs:
 
     # Run convert cli with images
     - name: convert-cli
-      run: ttrpg-convert -g 5e -o collapsed_with_images config.json 5etools/data 5etools/img ${{ env.BOOKS }} ${{ env.ADVENTURES }}
+      run: ./ttrpg-convert -g 5e -o collapsed_with_images config.json 5etools/data 5etools/img ${{ env.BOOKS }} ${{ env.ADVENTURES }}
     
     # Zip up the markdown and images
     - name: compress
