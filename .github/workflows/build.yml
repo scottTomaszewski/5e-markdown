@@ -43,7 +43,7 @@ jobs:
         curl -L https://github.com/ebullient/ttrpg-convert-cli/releases/download/${JSON5E_CONVERT_CLI_VERSION}/ttrpg-convert-cli-${JSON5E_CONVERT_CLI_VERSION}-linux-x86_64.tgz -o ttrpg-convert-cli.tgz
         tar -zxvf ttrpg-convert-cli.tgz
         mv ttrpg-convert-cli-${JSON5E_CONVERT_CLI_VERSION}-linux-x86_64/bin/ttrpg-convert ./ttrpg-convert
-        ttrpg-convert-cli-${JSON5E_CONVERT_CLI_VERSION}-linux-x86_64/bin/ttrpg-convert --help
+        ttrpg-convert --help
         # binary at ttrpg-convert
 
         # Download 5etools data (without images)
