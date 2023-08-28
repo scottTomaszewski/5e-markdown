@@ -12,13 +12,13 @@ On each release, there are two possible zip artifacts:
 
 ## Usage
 
-As is, Github Actions for this repo will only generate markdown for the SRD.  To generate markdown for content you own, start by making a (private) github repo using this repo as a template (See [Github Docs - Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template))
+As is, Github Actions for this repo will only generate markdown for the DMG, MM, and PHB.  To generate markdown for content you own, start by making a (private) github repo using this repo as a template (See [Github Docs - Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template))
 
 ![image](https://user-images.githubusercontent.com/5295276/200853381-ba0f4da4-3117-40bc-924b-8c824056baa1.png)
 
 In your newly generated repo, 
 
-1. Update the `config.json` file with the sources you want.  For information on how to use this file, see the json5e-convert-cli [json documentation](https://github.com/ebullient/json5e-convert-cli#additional-parameters)
+1. Update the `config.json` file with the sources you want.  For information on how to use this file, see the json5e-convert-cli [Using A Configuration File](https://github.com/ebullient/ttrpg-convert-cli#using-a-configuration-file)
 2. There is also a `versions.json` file with two additional fields: `json5e_convert_cli_version` for the version of json5e-convert-cli and `version_5etools` for the version of 5etools
 3. Commit and push the change
 4. Wait up to 20 minutes for the cli converter to do its thing
@@ -31,11 +31,7 @@ Note: Generating with images may be very large depending on which sources you pu
 To integrate into your obsidian vault,
 
 1. Extract the zip to your vault 
-   1. The `compendium` and `rules` folders need to be at the top-level to support links.  I'll fix this one day
-3. TTRPG Statblock plugin
-   1. Open the plugin settings and enable `Parse Frontmatter for Creatures` and enable the `Disable 5e SRD` to use these statblocks
-   2. Set the `Beastiary Folder` to the extracted folder you dumped in your vault (`compendium` should be fine?)
-   3. Might need to reload the app?  Idk... Some indexing stuff...
+   1. The `compendium` folder need to be at the top-level to support links.  (I'll fix this one day?)
 
 ## Disclaimer
 
@@ -51,8 +47,8 @@ ideally go buy at a local gaming store <3
 
 ## Attribution
 
-This repo takes advantage of 
-[json5e-convert-cli](https://github.com/ebullient/json5e-convert-cli) which is under the
+This repo takes advantage of ebullient's
+[ttrpg-convert-cli](https://github.com/ebullient/ttrpg-convert-cli) which is under the
 Apache 2.0 license. 
 
 This repo uses
